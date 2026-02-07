@@ -1,5 +1,6 @@
 import json
 import logging
+from http import HTTPStatus
 
 from app.bot import TelegramBot
 from app.config import Config
@@ -22,17 +23,17 @@ def lambda_handler(event, context):
 
         message = bot.extract_message(body)
         if not message:
-            return {"statusCode": 200}
+            return {"statusCode": HTTPStatus.OK}
 
         chat_id = message["chat_id"]
         user_id = message["user_id"]
         text = message["text"].strip()
 
         if not bot.is_authorized(user_id):
-            return {"statusCode": 200}
+            return {"statusCode": HTTPStatus.OK}
 
         if not is_valid_url(text):
-            return {"statusCode": 200}
+            return {"statusCode": HTTPStatus.OK}
 
         try:
             readeck.create_bookmark(text)
@@ -44,4 +45,4 @@ def lambda_handler(event, context):
     except Exception:
         logger.exception("Unexpected error processing update")
 
-    return {"statusCode": 200}
+    return {"statusCode": HTTPStatus.OK}
