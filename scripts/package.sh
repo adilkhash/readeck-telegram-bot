@@ -12,8 +12,8 @@ uv export --frozen --no-dev --no-editable > requirements.txt
 echo "Installing dependencies to packages/..."
 uv pip install \
   --target packages \
-  --python-platform manylinux2014_x86_64 \
-  --python-version 3.12 \
+  --python-platform x86_64-manylinux_2_17 \
+  --python-version 3.14 \
   -r requirements.txt
 
 rm requirements.txt

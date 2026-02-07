@@ -30,9 +30,11 @@ def lambda_handler(event, context):
         text = message["text"].strip()
 
         if not bot.is_authorized(user_id):
+            logger.warning(f"User is not authorized: {user_id}")
             return {"statusCode": HTTPStatus.OK}
 
         if not is_valid_url(text):
+            logger.warning(f"Invalid text: {text}")
             return {"statusCode": HTTPStatus.OK}
 
         try:
