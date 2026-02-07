@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+
+# Virtual environment
+.venv/
+
+# Environment variables
+.env
+
+# Lambda packaging
+packages/
+package.zip
